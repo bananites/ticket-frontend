@@ -1,0 +1,42 @@
+@import '../../styles.scss';
+
+.spacer {
+  flex: 1 1 auto;
+}
+mat-grid-tile {
+  background:white;
+}
+.example-container {
+    height: 100%;
+}
+.mat-sidenav{
+    width: 25%;
+}
+::ng-deep ::-webkit-scrollbar{
+    width: 4px;
+    overflow-y: scroll;
+    background: grey;
+    box-shadow: inset 0 0 4px #ffffff;
+}
+::ng-deep ::-webkit-scrollbar-thumb{
+    background: $base-color;
+}
+
+.items-search{
+    display: flex;
+}
+.searchbar{
+    margin: 10px;
+}
+.button-search{
+    box-shadow: none;
+}
+
+
+.mat-mdc-form-field{
+    display: flex;
+    
+}
+::ng-deep .mat-mdc-form-field-bottom-align {
+margin-bottom: -1.9em;
+}
