@@ -1,0 +1,18 @@
+body{
+    background-color: black;
+}
+.mat-grid-tile{
+    background-color: black;
+    border: black;
+
+}
+button{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    align-items:self-start;
+    border-radius: 0;
+    padding: 5%;
+
+}

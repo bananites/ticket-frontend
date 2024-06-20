@@ -1,0 +1,37 @@
+<mat-grid-list cols="2" rowHeight="1:1">
+    <mat-grid-tile>
+        <button mat-fab extended color="basic">
+            <p>All tickets</p>
+            <mat-selection-list #tickets>
+                <mat-action-list></mat-action-list>
+                @for (ticket of allTickets; track ticket){
+
+                <mat-list-item><a> {{ticket}} </a></mat-list-item>
+                <mat-divider></mat-divider>
+                }
+
+            </mat-selection-list>
+
+
+
+        </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <button mat-fab extended color="basic">
+            <p>Unassinged Tickets</p>
+
+        </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+         <button mat-fab extended color="basic">
+            <p>Create Ticket</p>
+
+        </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+         <button mat-fab extended color="basic">
+        <p>Your Tickets</p>
+    
+  </button>  
+</mat-grid-tile>
+</mat-grid-list>
