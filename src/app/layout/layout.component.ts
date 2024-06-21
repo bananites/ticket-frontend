@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
+import { TicketOverviewComponent } from '../ticket-overview/ticket-overview.component';
 
 const config = {
   disableAnimations: false
@@ -20,7 +21,7 @@ const config = {
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, DashboardComponent, MatTabsModule,
+  imports: [TicketOverviewComponent, CommonModule, DashboardComponent, MatTabsModule,
     MatInputModule,
     FormsModule,
     MatFormFieldModule,
@@ -38,7 +39,7 @@ const config = {
 })
 export class LayoutComponent {
 
-  currentPage: string = 'dashboard';
+  currentPage: string = 'ticket-overview';
 
   // TODO make api call 
   ticketsViewed: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];

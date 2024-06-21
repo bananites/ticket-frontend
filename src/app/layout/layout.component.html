@@ -1,22 +1,31 @@
-<mat-toolbar color="basic">
+<mat-toolbar class="header-toolbar" color="basic">
   <mat-toolbar-row>
     <span>Ticket App By Breuer</span>
     <span class="spacer"></span>
+     <button mat-icon-button aria-label="news icon button">
+      <mat-icon>notifications</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="dashboard icon button">
+      <mat-icon>dashboard</mat-icon>
+    </button>
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>logout</mat-icon>
-        <span>Logout</span>
+   <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
       </button>
+
       <button mat-menu-item>
         <mat-icon>settings</mat-icon>
         <span>Settings</span>
       </button>
+   
+      
       <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-        <span>Disable alerts</span>
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
       </button>
     </mat-menu>
   </mat-toolbar-row>
@@ -30,43 +39,62 @@
   <mat-sidenav opened mode="side">
 
 
-        <mat-form-field appearance="outline" class="searchbar">
-          <mat-label class="label-search">
-            Search
-          </mat-label>
-          <div class="items-search">
-            <input class="input-search" matInput>
-            <button class="button-search" mat-mini-fab color="basic" aria-label="Example icon button with a menu icon">
-              <mat-icon>search</mat-icon>
-            </button>
-          </div>
-        </mat-form-field>
-      <mat-divider></mat-divider>
-        <mat-tab-group>
-          <mat-tab label="History">
-            <mat-selection-list #tickets>
-              <mat-action-list></mat-action-list>
-              @for (ticket of ticketsViewed; track ticket){
+    <mat-form-field appearance="outline" class="searchbar">
+      <mat-label class="label-search">
+        Search
+      </mat-label>
+      <div class="items-search">
+        <input class="input-search" matInput>
+        <button class="button-search" mat-mini-fab color="basic" aria-label="Example icon button with a menu icon">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-tab-group color="accent">
+      <mat-tab label="History">
+        <mat-selection-list #tickets>
+          <mat-action-list></mat-action-list>
+          @for (ticket of ticketsViewed; track ticket){
 
-              <mat-list-item><a> {{ticket}} </a></mat-list-item>
-              <mat-divider></mat-divider>
-              }
+          <mat-list-item><a> {{ticket}} </a></mat-list-item>
+          <mat-divider></mat-divider>
+          }
 
-            </mat-selection-list>
+        </mat-selection-list>
 
-          </mat-tab>
-          <mat-tab label="New"> Content 2 </mat-tab>
-        </mat-tab-group>
+      </mat-tab>
+      <mat-tab label="New"> Content 2 </mat-tab>
+    </mat-tab-group>
 
 
 
   </mat-sidenav>
+
+
+
   <div>
     <ng-container *ngIf="currentPage === 'dashboard'">
-    <ng-container *ngTemplateOutlet="dashboardComponent"> </ng-container>
+      <ng-container *ngTemplateOutlet="dashboardComponent"> </ng-container>
     </ng-container>
   </div>
   <ng-template #dashboardComponent>
     <app-dashboard></app-dashboard>
   </ng-template>
+
+  <div>
+    <ng-container *ngIf="currentPage === 'ticket-overview'">
+      <ng-container *ngTemplateOutlet="ticketOverviewComponent"> </ng-container>
+    </ng-container>
+  </div>
+  <ng-template #ticketOverviewComponent>
+  <app-ticket-overview></app-ticket-overview>
+  </ng-template>
+
+
+
+
+
+
+
 </mat-sidenav-container>
