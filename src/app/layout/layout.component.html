@@ -72,29 +72,7 @@
   </mat-sidenav>
 
 
-
-  <div>
-    <ng-container *ngIf="currentPage === 'dashboard'">
-      <ng-container *ngTemplateOutlet="dashboardComponent"> </ng-container>
-    </ng-container>
-  </div>
-  <ng-template #dashboardComponent>
-    <app-dashboard></app-dashboard>
-  </ng-template>
-
-  <div>
-    <ng-container *ngIf="currentPage === 'ticket-overview'">
-      <ng-container *ngTemplateOutlet="ticketOverviewComponent"> </ng-container>
-    </ng-container>
-  </div>
-  <ng-template #ticketOverviewComponent>
-  <app-ticket-overview></app-ticket-overview>
-  </ng-template>
-
-
-
-
-
+  <router-outlet></router-outlet>
 
 
 </mat-sidenav-container>

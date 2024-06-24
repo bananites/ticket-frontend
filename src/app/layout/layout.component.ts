@@ -14,6 +14,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
 import { TicketOverviewComponent } from '../ticket-overview/ticket-overview.component';
+import { RouterModule } from '@angular/router';
 
 const config = {
   disableAnimations: false
@@ -21,7 +22,7 @@ const config = {
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [TicketOverviewComponent, CommonModule, DashboardComponent, MatTabsModule,
+  imports: [TicketOverviewComponent, CommonModule, DashboardComponent, MatTabsModule, RouterModule,
     MatInputModule,
     FormsModule,
     MatFormFieldModule,

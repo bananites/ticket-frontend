@@ -1,0 +1,28 @@
+@if(ticket){
+
+<!-- <h2>Ticket Details</h2>
+    <p><strong>ID:</strong> {{ ticket.id }}</p>
+    <p><strong>Title:</strong> {{ ticket.title }}</p>
+    <p><strong>Description:</strong> {{ ticket.description }}</p> -->
+
+<mat-card >
+    <mat-card-header>
+        <mat-card-title>{{ticket.title}} <mat-icon color="accent">label_important</mat-icon>{{ticket.status}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            {{ticket.description}}
+        </p>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+        <button mat-button>Change status</button>
+        <button mat-button>Change name</button>
+        <button mat-button>Comment</button>
+    </mat-card-actions>
+</mat-card>
+
+}
+@else {
+<p>couldnt find </p>
+}

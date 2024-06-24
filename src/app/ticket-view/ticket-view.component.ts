@@ -1,27 +1,22 @@
-import { Component } from '@angular/core';
-import { MatIconModule } from "@angular/material/icon";
-import { MatDividerModule } from "@angular/material/divider";
-import { DatePipe } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
-import { MatListModule } from "@angular/material/list";
-import { MatButtonModule } from "@angular/material/button";
-import { MatCheckboxModule } from "@angular/material/checkbox";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Tickets } from '../models/ticket.interface';
-
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
+import { MatDividerModule } from "@angular/material/divider"; 
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
-  selector: 'app-ticket-overview',
+  selector: 'app-ticket-view',
   standalone: true,
-  imports: [MatCheckboxModule, MatButtonModule, MatListModule, MatTableModule, MatIconModule, MatDividerModule, DatePipe],
-  templateUrl: './ticket-overview.component.html',
-  styleUrl: './ticket-overview.component.scss'
+  imports: [MatIconModule, MatDividerModule, CommonModule, MatCardModule, MatButtonModule],
+  templateUrl: './ticket-view.component.html',
+  styleUrl: './ticket-view.component.scss'
 })
-export class TicketOverviewComponent {
+export class TicketViewComponent implements OnInit {
 
 
-displayedColumns: string[] = ['select','title', 'updated', 'created', 'status'];
-
-  // TODO make api call
   tickets: Tickets[] = [
     {
       id: '1',
@@ -47,5 +42,30 @@ displayedColumns: string[] = ['select','title', 'updated', 'created', 'status'];
       created: new Date('1/1/16').toLocaleDateString(), // Beispiel für das Erstellungsdatum
       status: 'pending' // Beispiel für den Status
     },
-];
+  ];
+
+  ticket: any;
+
+  // TODO implement TicketService
+
+  constructor(
+    private route: ActivatedRoute,
+    // private ticketService: TicketService
+  ) { }
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.loadTicket(id);
+    }
+  }
+
+  loadTicket(id: string): void {
+    // this.ticketService.getTicketById(id).subscribe(ticket => {this.ticket = ticket;});
+    this.ticket = this.tickets.find(ticket => ticket.id === id);
+
+  }
+
+
+
 }
