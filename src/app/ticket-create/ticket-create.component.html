@@ -1,0 +1,41 @@
+<mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="contactFormGroup">
+    <form class="ticket-form" [formGroup]="contactFormGroup">
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <div>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input class="full-width" matInput placeholder="Last name, First name" formControlName="nameCtrl" required>
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <mat-label>Email adress</mat-label>
+        <input class="full-width" matInput playholder="Your email adress" formControlName="emailCtrl" required>
+      </mat-form-field>
+      <div>
+        <button color="accent" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="issueFormGroup" label="How can we help you?">
+    <form class="ticket-form" [formGroup]="issueFormGroup">
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea class="full-width" matInput formControlName="descriptionCtrl" placeholder="How can we help you?"
+          required></textarea>
+      </mat-form-field>
+      <div>
+        <button color="accent" mat-button matStepperPrevious>Back</button>
+        <button color="accent" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button color="accent" mat-button matStepperPrevious>Back</button>
+      <button color="accent" mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>
