@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -15,6 +15,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
 import { TicketOverviewComponent } from '../ticket-overview/ticket-overview.component';
 import { RouterModule } from '@angular/router';
+import { Ticket } from '../models/ticket.interface';
 
 const config = {
   disableAnimations: false
@@ -38,11 +39,45 @@ const config = {
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent {
+export class LayoutComponent{
 
-  currentPage: string = 'ticket-overview';
 
   // TODO make api call 
-  ticketsViewed: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+  tickets: Ticket[] = [
+    {
+      id: '1',
+      title: 'Photos',
+      description: 'lorem ipsum ksaojfw  aiwfoai oinfoifn aonacnoiaooi oij aop cjooi oai o c',
+      updated: new Date('2024-05-26').toLocaleDateString(),
+      created: new Date('12/31/15').toLocaleDateString(), // Beispiel für das Erstellungsdatum
+      owner: 'Pascal Breuer',
+      status: 'completed' ,// Beispiel für den Status
+
+    
+    },
+    {
+      id: '2',
+      title: 'Recipes',
+      description: 'lorem ipsum ksaojfw  aiwfoai oinfoifn aonacnoiaooi oij aop cjooi oai o c',
+      updated: new Date('1/17/16').toLocaleDateString(),
+      created: new Date('1/10/16').toLocaleDateString(), // Beispiel für das Erstellungsdatum
+      owner: 'Pascal Breuer',
+      status: 'in-progress', // Beispiel für den Status
+    
+    },
+    {
+      id: '3',
+      title: 'Work',
+      description: 'lorem ipsum ksaojfw  aiwfoai oinfoifn aonacnoiaooi oij aop cjooi oai o c',
+      updated: new Date('1/28/16').toLocaleDateString(),
+      created: new Date('1/1/16').toLocaleDateString(), // Beispiel für das Erstellungsdatum
+      owner: 'Pascal Breuer',
+      status: 'pending', // Beispiel für den Status
+
+    },
+
+  ];
+
+    
 
 }
