@@ -1,18 +1,17 @@
 <mat-grid-list cols="1" rowHeight="7:1">
     <mat-grid-tile>
-        <button mat-fab extended color="basic">
-            <a href="http://www.">All tickets</a>
-  
+        <button mat-fab routerLink="/ticket-overview" extended color="basic">
+            <p>All Tickets</p>
         </button>
     </mat-grid-tile>
     <mat-grid-tile>
-        <button mat-fab extended color="basic">
+        <button mat-fab routerLink="/ticket-unassigned" extended color="basic">
             <a>Unassinged Tickets</a>
 
         </button>
     </mat-grid-tile>
     <mat-grid-tile>
-        <button mat-fab extended color="basic">
+        <button mat-fab routerLink="/ticket-create" extended color="basic">
             <p>Create Ticket</p>
 
         </button>
