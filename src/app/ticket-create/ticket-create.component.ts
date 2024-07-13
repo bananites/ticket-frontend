@@ -21,16 +21,25 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angu
 })
 export class TicketCreateComponent {
 
-  contactFormGroup = this._formBuilder.group({
-    nameCtrl: ['', Validators.required],
-    emailCtrl: ['', Validators.required]
-  });
-
-  issueFormGroup = this._formBuilder.group({
+  form = this._formBuilder.group({
+    firstnameCtrl: ['', Validators.required],
+    lastnameCtrl: ['', Validators.required],
+    emailCtrl: ['', Validators.required],
     descriptionCtrl: ['', Validators.required]
+
   });
 
   isLinear = false;
+
+  onSubmit(): void{
+
+    if(this.form.invalid){
+      console.warn("INVALID")
+      return;
+    }
+
+    
+  }
 
 
   constructor(private _formBuilder: FormBuilder) { }

@@ -1,13 +1,17 @@
 <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="contactFormGroup">
-    <form class="ticket-form" [formGroup]="contactFormGroup">
+  <mat-step [stepControl]="form">
+    <form class="ticket-form" [formGroup]="form">
       <ng-template matStepLabel>Fill out your name</ng-template>
       <div>
         <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input class="full-width" matInput placeholder="Last name, First name" formControlName="nameCtrl" required>
+          <mat-label>Firstname</mat-label>
+          <input class="full-width" matInput placeholder="Firstname" formControlName="firstnameCtrl" required>
         </mat-form-field>
       </div>
+      <mat-form-field>
+        <mat-label>Lastname</mat-label>
+        <input matInput placeholder="Lastname" formControlName="lastnameCtrl" required>
+      </mat-form-field>
       <mat-form-field>
         <mat-label>Email adress</mat-label>
         <input class="full-width" matInput playholder="Your email adress" formControlName="emailCtrl" required>
@@ -17,8 +21,8 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="issueFormGroup" label="How can we help you?">
-    <form class="ticket-form" [formGroup]="issueFormGroup">
+  <mat-step [stepControl]="form" label="How can we help you?">
+    <form class="ticket-form" [formGroup]="form">
       <mat-form-field>
         <mat-label>Description</mat-label>
         <textarea class="full-width" matInput formControlName="descriptionCtrl" placeholder="How can we help you?"
@@ -28,7 +32,7 @@
         <button color="accent" mat-button matStepperPrevious>Back</button>
         <button color="accent" mat-button matStepperNext>Next</button>
       </div>
-    </form>
+      </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
@@ -36,6 +40,7 @@
     <div>
       <button color="accent" mat-button matStepperPrevious>Back</button>
       <button color="accent" mat-button (click)="stepper.reset()">Reset</button>
+      <button color="accent" mat-button (click)="onSubmit()" [disabled]="form.invalid">Submit</button>
     </div>
   </mat-step>
 </mat-stepper>

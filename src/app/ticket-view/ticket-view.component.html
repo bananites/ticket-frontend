@@ -1,17 +1,22 @@
-@if(ticket){
+@if(true){
 
 <!-- <h2>Ticket Details</h2>
     <p><strong>ID:</strong> {{ ticket.id }}</p>
     <p><strong>Title:</strong> {{ ticket.title }}</p>
     <p><strong>Description:</strong> {{ ticket.description }}</p> -->
 
-<mat-card >
+<mat-card>
     <mat-card-header>
-        <mat-card-title>{{ticket.title}} <mat-icon color="accent">label_important</mat-icon>{{ticket.status}}</mat-card-title>
+        <mat-card-title>
+            <!-- TODO check for http request data -->
+            <!-- {{ticket.title}} -->
+            <mat-icon color="accent">label_important</mat-icon>
+            <!-- {{ticket.status}} -->
+        </mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <p>
-            {{ticket.description}}
+            <!-- {{ticket.description}} -->
         </p>
     </mat-card-content>
     <mat-divider></mat-divider>
