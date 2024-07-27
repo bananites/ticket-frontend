@@ -15,7 +15,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
 import { TicketOverviewComponent } from '../ticket-overview/ticket-overview.component';
 import { RouterModule } from '@angular/router';
-import { Ticket } from '../models/ticket.class';
+import { Ticket } from '../models/ticket';
 
 const config = {
   disableAnimations: false
