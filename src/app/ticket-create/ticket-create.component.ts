@@ -4,6 +4,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatButtonModule } from "@angular/material/button";
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { Ticket } from '../models/ticket';
 
 @Component({
   selector: 'app-ticket-create',
@@ -25,6 +26,7 @@ export class TicketCreateComponent {
     firstnameCtrl: ['', Validators.required],
     lastnameCtrl: ['', Validators.required],
     emailCtrl: ['', Validators.required],
+    titleCtrl: ['', Validators.required],
     descriptionCtrl: ['', Validators.required]
 
   });
@@ -38,8 +40,12 @@ export class TicketCreateComponent {
       return;
     }
 
-    
-  }
+    const ticket: Ticket = new Ticket();
+
+    ticket.title = this.form.value.titleCtrl!
+    ticket.description = this.form.value.descriptionCtrl!
+
+}
 
 
   constructor(private _formBuilder: FormBuilder) { }

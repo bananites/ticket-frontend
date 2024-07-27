@@ -23,16 +23,24 @@
   </mat-step>
   <mat-step [stepControl]="form" label="How can we help you?">
     <form class="ticket-form" [formGroup]="form">
+
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input class="full-width" matInput formControlName="titleCtrl" placeholder="Title"
+          required>
+      </mat-form-field>
+
       <mat-form-field>
         <mat-label>Description</mat-label>
         <textarea class="full-width" matInput formControlName="descriptionCtrl" placeholder="How can we help you?"
           required></textarea>
       </mat-form-field>
+
       <div>
         <button color="accent" mat-button matStepperPrevious>Back</button>
         <button color="accent" mat-button matStepperNext>Next</button>
       </div>
-      </form>
+    </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
