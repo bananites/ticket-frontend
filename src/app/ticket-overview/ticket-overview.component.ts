@@ -6,7 +6,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from "@angular/material/list";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
-import { Ticket } from '../models/ticket.class';
+import { Ticket } from '../models/ticket';
 import { RouterModule } from '@angular/router';
 
 
