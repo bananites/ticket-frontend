@@ -1,10 +1,12 @@
+import { User } from "./user";
+
 export class Ticket {
     private _id: string= "";
     private _firstname: string = "";
     private _lastname: string = "";
     private _title: string= ""
     private _description: string=""
-    private _owner: string= ""
+    private _owner!: User;
     private _status: string= ""
 
 
@@ -33,10 +35,10 @@ export class Ticket {
   public set status(value: string) {
     this._status = value;
   }
-  public get owner(): string {
+  public get owner(): User {
     return this._owner;
   }
-  public set owner(value: string) {
+  public set owner(value: User) {
     this._owner = value;
   }
   
