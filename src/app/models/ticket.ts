@@ -1,64 +1,56 @@
 import { User } from "./user";
 
 export class Ticket {
-    private _id: string= "";
-    private _firstname: string = "";
-    private _lastname: string = "";
-    private _title: string= ""
-    private _description: string=""
-    private _owner!: User;
-    private _status: string= ""
+    private id: string= "";
+    private createdBy: string = "";
+    private title: string= ""
+    private description: string=""
+    private owner!: User;
+    private status?: string
 
 
   public constructor(
   ){
   }  
   
-  
-  
-  public get lastname(): string {
-    return this._lastname;
+  public get getCreatedBy(): string {
+    return this.createdBy;
   }
-  public set lastname(value: string) {
-    this._lastname = value;
-  }
-    public get firstname(): string {
-    return this._firstname;
-  }
-  public set firstname(value: string) {
-    this._firstname = value;
+  public set setCreatedBy(value: string) {
+    this.createdBy = value;
   }
   
-  public get status(): string {
-    return this._status;
+  public get getStatus(): string | undefined{
+    return this.status
+
   }
-  public set status(value: string) {
-    this._status = value;
+  public set setStatus(value: string) {
+    this.status = value;
   }
-  public get owner(): User {
-    return this._owner;
+  public get getOwner(): User {
+    return this.owner;
   }
-  public set owner(value: User) {
-    this._owner = value;
+  public set setOwner(value: User) {
+    this.owner = value;
   }
   
-  public get description(): string {
-    return this._description;
+  public get getDescription(): string {
+    return this.description;
   }
-  public set description(value: string) {
-    this._description = value;
+  public set setDescription(value: string) {
+    this.description = value;
   }
-  public get title(): string {
-    return this._title;
+  public get getTitle(): string {
+    return this.title;
   }
-  public set title(value: string) {
-    this._title = value;
+  public set setTitle(value: string) {
+    this.title = value;
   }
-  public get id(): string {
-    return this._id;
+  public get getId(): string {
+    return this.id;
   }
-  public set id(value: string) {
-    this._id = value;
+  public set setId(value: string) {
+    this.id = value;
   }
 
 }
