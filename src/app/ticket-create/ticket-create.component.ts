@@ -5,6 +5,8 @@ import { MatStepperModule } from "@angular/material/stepper";
 import { MatButtonModule } from "@angular/material/button";
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Ticket } from '../models/ticket';
+import { TicketService } from '../services/ticket/ticket.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-ticket-create',
@@ -22,10 +24,16 @@ import { Ticket } from '../models/ticket';
 })
 export class TicketCreateComponent {
 
+
+  constructor(
+    private ticketService: TicketService,
+    private _formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar
+  ) { }
+
+
   form = this._formBuilder.group({
-    firstnameCtrl: ['', Validators.required],
-    lastnameCtrl: ['', Validators.required],
-    emailCtrl: ['', Validators.required],
+    userCtrl: ['', Validators.required],
     titleCtrl: ['', Validators.required],
     descriptionCtrl: ['', Validators.required]
 
@@ -33,21 +41,42 @@ export class TicketCreateComponent {
 
   isLinear = false;
 
-  onSubmit(): void{
+  onSubmit(): void {
 
-    if(this.form.invalid){
+    if (this.form.invalid) {
       console.warn("INVALID")
       return;
     }
 
-    const ticket: Ticket = new Ticket();
+     const ticket: Ticket = new Ticket();
 
-    ticket.title = this.form.value.titleCtrl!
-    ticket.description = this.form.value.descriptionCtrl!
+    // // TODO add user when login is implemented
 
-}
+    ticket.setCreatedBy = this.form.value.userCtrl!
+    ticket.setTitle = this.form.value.titleCtrl!
+    ticket.setDescription = this.form.value.descriptionCtrl!
+
+    if (!this.ticketService.postTicket(ticket)) {
+      // TODO give a failed notification
+      
+      this.openSnackBar("Failed" + ticket.getCreatedBy, "Try Again")
+      return
+    }
+
+    //TODO give success notification
+
+    this.openSnackBar("Thanks " + ticket.getCreatedBy + ", ticket is created", "Ok")
+
+    this.ticketService.postTicket(ticket).forEach(element => {
+      console.log(element)
+    });
+
+  }
+
+  openSnackBar(message: string, action: string){
+    this._snackBar.open(message, action);
+  }
 
 
-  constructor(private _formBuilder: FormBuilder) { }
 
 }
