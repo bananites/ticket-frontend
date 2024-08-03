@@ -3,19 +3,12 @@
     <form class="ticket-form" [formGroup]="form">
       <ng-template matStepLabel>Fill out your name</ng-template>
       <div>
+      
         <mat-form-field>
-          <mat-label>Firstname</mat-label>
-          <input class="full-width" matInput placeholder="Firstname" formControlName="firstnameCtrl" required>
+          <mat-label>You name</mat-label>
+          <input class="full-width" matInput playholder="Your name" formControlName="userCtrl" required>
         </mat-form-field>
       </div>
-      <mat-form-field>
-        <mat-label>Lastname</mat-label>
-        <input matInput placeholder="Lastname" formControlName="lastnameCtrl" required>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Email adress</mat-label>
-        <input class="full-width" matInput playholder="Your email adress" formControlName="emailCtrl" required>
-      </mat-form-field>
       <div>
         <button color="accent" mat-button matStepperNext>Next</button>
       </div>
@@ -23,13 +16,12 @@
   </mat-step>
   <mat-step [stepControl]="form" label="How can we help you?">
     <form class="ticket-form" [formGroup]="form">
-
-      <mat-form-field>
-        <mat-label>Title</mat-label>
-        <input class="full-width" matInput formControlName="titleCtrl" placeholder="Title"
-          required>
-      </mat-form-field>
-
+      <div>
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input class="full-width" matInput formControlName="titleCtrl" placeholder="Title" required>
+        </mat-form-field>
+      </div>
       <mat-form-field>
         <mat-label>Description</mat-label>
         <textarea class="full-width" matInput formControlName="descriptionCtrl" placeholder="How can we help you?"
