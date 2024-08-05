@@ -19,14 +19,14 @@ export class TicketService {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer your-token',
+        'Content-Type': 'application/json'
+        //TODO think about authorization
+        // 'Authorization': 'Bearer your-token',
       }),
       params: new HttpParams().set('ownerId', ticket.createdBy).set('title', ticket.title).set('description', ticket.description),
       responseType: 'json' as const,
     };
 
-    // console.log(this.http.post<Ticket>(environment.apiUrl + "/ticket", httpOptions))
     return this.http.post<Ticket>(environment.apiUrl + "/v1/ticket",ticket, httpOptions)
 
   }
