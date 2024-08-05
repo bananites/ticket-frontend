@@ -56,23 +56,15 @@ export class TicketCreateComponent {
     ticket.setTitle = this.form.value.titleCtrl!
     ticket.setDescription = this.form.value.descriptionCtrl!
 
-    if (!this.ticketService.postTicket(ticket)) {
-      // TODO give a failed notification
-      
-      this.openSnackBar("Failed" + ticket.getCreatedBy, "Try Again")
-      return
-    }
-
-    //TODO give success notification
-
-    this.openSnackBar("Thanks " + ticket.getCreatedBy + ", ticket is created", "Ok")
-
-    this.ticketService.postTicket(ticket).forEach(element => {
-      console.log(element)
-    });
-
+    this.ticketService.postTicket(ticket).subscribe({
+      next: (ticket) => {
+        this.openSnackBar('Thanks Ticket has been created', 'Ok')
+      },
+      error: (err) => {
+        this.openSnackBar('Creating a ticket failed, please try again later', 'Ok')
+      }
+    })
   }
-
   openSnackBar(message: string, action: string){
     this._snackBar.open(message, action);
   }
