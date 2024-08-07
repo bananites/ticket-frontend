@@ -31,4 +31,23 @@ export class TicketService {
 
   }
 
+  getTicketById(id: string): Observable<Ticket>{
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        //TODO think about authorization
+        // 'Authorization': 'Bearer your-token',
+      }),
+      // params: new HttpParams().set('id', id),
+      responseType: 'json' as const,
+    };
+
+    return this.http.get<any>(environment.apiUrl + `/v1/ticket/${id}`, httpOptions)
+  }
+
+
+
+
+
 }
