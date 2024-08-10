@@ -6,7 +6,9 @@ import { MatButtonModule } from "@angular/material/button";
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Ticket } from '../models/ticket';
 import { TicketService } from '../services/ticket/ticket.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-ticket-create',
@@ -28,7 +30,8 @@ export class TicketCreateComponent {
   constructor(
     private ticketService: TicketService,
     private _formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) { }
 
 
@@ -48,7 +51,7 @@ export class TicketCreateComponent {
       return;
     }
 
-     const ticket: Ticket = new Ticket();
+    const ticket: Ticket = new Ticket();
 
     // // TODO add user when login is implemented
 
@@ -57,15 +60,17 @@ export class TicketCreateComponent {
     ticket.setDescription = this.form.value.descriptionCtrl!
 
     this.ticketService.postTicket(ticket).subscribe({
-      next: (ticket) => {
+      next: (response) => {
         this.openSnackBar('Thanks Ticket has been created', 'Ok')
+        this.router.navigate(['ticket/'+ response.ticketId])
+
       },
       error: (err) => {
         this.openSnackBar('Creating a ticket failed, please try again later', 'Ok')
       }
     })
   }
-  openSnackBar(message: string, action: string){
+  openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }
 
