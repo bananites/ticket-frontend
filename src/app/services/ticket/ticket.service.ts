@@ -3,6 +3,7 @@ import { Ticket } from '../../models/ticket';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from "./../../../environments/environment";
+import { JsonPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class TicketService {
   ) {}
    
 
-  postTicket(ticket: any): Observable<Ticket>{
+  postTicket(ticket: any): Observable<any>{
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -27,7 +28,7 @@ export class TicketService {
       responseType: 'json' as const,
     };
 
-    return this.http.post<Ticket>(environment.apiUrl + "/v1/ticket",ticket, httpOptions)
+    return this.http.post<any>(environment.apiUrl + "/v1/ticket",ticket, httpOptions)
 
   }
 
