@@ -1,7 +1,7 @@
 import { User } from "./user";
 
 export class Ticket {
-    private id: string= "";
+    private id?: string;
     private createdBy: string = "";
     private title: string= ""
     private description: string=""
@@ -46,7 +46,7 @@ export class Ticket {
   public set setTitle(value: string) {
     this.title = value;
   }
-  public get getId(): string {
+  public get getId(): string | undefined{
     return this.id;
   }
   public set setId(value: string) {
