@@ -3,7 +3,6 @@ import { Ticket } from '../../models/ticket';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from "./../../../environments/environment";
-import { JsonPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -40,11 +39,24 @@ export class TicketService {
         //TODO think about authorization
         // 'Authorization': 'Bearer your-token',
       }),
-      // params: new HttpParams().set('id', id),
+
       responseType: 'json' as const,
     };
 
     return this.http.get<any>(environment.apiUrl + `/v1/ticket/${id}`, httpOptions)
+  }
+
+  getAllTickets(): Observable<Ticket[]>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        //TODO think about authorization
+        // 'Authorization': 'Bearer your-token',
+      }),
+      responseType: 'json' as const,
+    };
+
+    return this.http.get<Ticket[]>(environment.apiUrl + "/v1/ticket", httpOptions)
   }
 
 
