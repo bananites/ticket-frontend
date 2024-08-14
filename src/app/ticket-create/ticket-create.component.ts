@@ -1,48 +1,88 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatButtonModule } from "@angular/material/button";
-import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Ticket } from '../models/ticket';
 import { TicketService } from '../services/ticket/ticket.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { User } from '../models/user';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AsyncPipe } from '@angular/common';
+import { UserService } from '../services/user/user.service';
+import { map, Observable, startWith } from 'rxjs';
 
 
 @Component({
   selector: 'app-ticket-create',
   standalone: true,
   imports: [
+    MatAutocompleteModule,
     MatButtonModule,
     MatStepperModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    AsyncPipe
   ],
   templateUrl: './ticket-create.component.html',
   styleUrl: './ticket-create.component.scss'
 })
-export class TicketCreateComponent {
+export class TicketCreateComponent implements OnInit {
 
+  
+  userCtrl = new FormControl('');
 
   constructor(
     private ticketService: TicketService,
+    private userService: UserService,
     private _formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
-    private router: Router
-  ) { }
+    private router: Router,
+  ) {
+
+    this.filteredUsers = this.userCtrl.valueChanges.pipe(
+      startWith(''),
+      map(user => (user ? this._filterUser(user): this.users.slice()))
+    )
+  }
+  ngOnInit(): void {
+
+    this.userService.getAllUser().subscribe({
+      next: (response) => {
+        this.users = response
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    });
+
+  }
 
 
   form = this._formBuilder.group({
-    userCtrl: ['', Validators.required],
+    userCtrlName: ['', Validators.required],
     titleCtrl: ['', Validators.required],
     descriptionCtrl: ['', Validators.required]
 
   });
 
-  isLinear = false;
+
+  users: User[] = [];
+  filteredUsers: Observable<User[]>;
+
+
+
+  private _filterUser(value: string): User[] {
+     const filterValue = value.toLowerCase();
+
+     return this.users.filter( 
+      user => user.firstname.toLowerCase().includes(filterValue) || user.lastname.toLowerCase().includes(filterValue));
+
+  }
 
   onSubmit(): void {
 
@@ -55,14 +95,14 @@ export class TicketCreateComponent {
 
     // // TODO add user when login is implemented
 
-    ticket.setCreatedBy = this.form.value.userCtrl!
+    ticket.setCreatedBy = this.form.value.userCtrlName!
     ticket.setTitle = this.form.value.titleCtrl!
     ticket.setDescription = this.form.value.descriptionCtrl!
 
     this.ticketService.postTicket(ticket).subscribe({
       next: (response) => {
         this.openSnackBar('Thanks Ticket has been created', 'Ok')
-        this.router.navigate(['ticket/'+ response.ticketId])
+        this.router.navigate(['ticket/' + response.ticketId])
 
       },
       error: (err) => {
