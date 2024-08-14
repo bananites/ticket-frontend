@@ -8,8 +8,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { Ticket } from '../models/ticket';
 import { RouterModule } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { log } from 'node:console';
+import {  HttpClientModule } from '@angular/common/http';
+import { TicketService } from '../services/ticket/ticket.service';
 
 
 @Component({
@@ -23,22 +23,29 @@ export class TicketOverviewComponent {
 
   displayedColumns: string[] = ['select', 'title', 'owner', 'status', 'updated', 'created'];
 
-  httpClient = inject(HttpClient)
-  public tickets: Array<Ticket> =  []
+  public tickets: Array<Ticket> = [];
 
-  ngOnInit(){
-    this.httpClient.get('http://localhost:3000/api/v1/ticket').subscribe({
-      next: (tickets: any) => {
-        
-        this.tickets = tickets;
-      }, error: (err) => console.log(err)
+  constructor(
+    private ticketService: TicketService
+  ) { }
+
+  ngOnInit() {
+
+    this.ticketService.getAllTickets().subscribe({
+      next: (response) => {
+         this.tickets = response
+      },
+      error: (err) => {
+        console.log(err)
+      }
     })
+
   }
 
-  getOwnerName(user: any): string | undefined{
-     if(!user){
+  getOwnerName(user: any): string | undefined {
+    if (!user) {
       return
-     }
+    }
     return user.firstname + " " + user.lastname
   }
 
