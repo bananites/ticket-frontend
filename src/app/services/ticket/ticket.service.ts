@@ -15,7 +15,7 @@ export class TicketService {
   ) {}
    
 
-  postTicket(ticket: any): Observable<any>{
+  postTicket(ticket: any): Observable<Ticket>{
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -27,7 +27,7 @@ export class TicketService {
       responseType: 'json' as const,
     };
 
-    return this.http.post<any>(environment.apiUrl + "/v1/ticket",ticket, httpOptions)
+    return this.http.post<Ticket>(environment.apiUrl + "/v1/ticket",ticket, httpOptions)
 
   }
 
@@ -43,7 +43,7 @@ export class TicketService {
       responseType: 'json' as const,
     };
 
-    return this.http.get<any>(environment.apiUrl + `/v1/ticket/${id}`, httpOptions)
+    return this.http.get<Ticket>(environment.apiUrl + `/v1/ticket/${id}`, httpOptions)
   }
 
   getAllTickets(): Observable<Ticket[]>{

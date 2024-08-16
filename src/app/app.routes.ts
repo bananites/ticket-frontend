@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { TicketOverviewComponent } from './ticket-overview/ticket-overview.component';
-import { TicketViewComponent } from './ticket-view/ticket-view.component';
-import { TicketUnassingedComponent } from './ticket-unassinged/ticket-unassinged.component';
-import { TicketCreateComponent } from './ticket-create/ticket-create.component';
+import { TicketUnassingedComponent } from './pages/ticket-unassinged/ticket-unassinged.component';
+import { TicketCreateComponent } from './pages/ticket-create/ticket-create.component';
+import { TicketOverviewComponent } from './pages/ticket-overview/ticket-overview.component';
+import { TicketViewComponent } from './pages/ticket-view/ticket-view.component';
 
 export const routes: Routes = [
     {

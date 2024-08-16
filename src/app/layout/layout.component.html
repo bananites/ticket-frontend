@@ -57,20 +57,32 @@
       </div>
     </mat-form-field>
     <mat-divider></mat-divider>
+
     <mat-tab-group color="accent">
       <mat-tab label="History">
         <mat-selection-list #ticket>
           <mat-action-list></mat-action-list>
-          @for (ticket of tickets; track ticket.id){
+          @for (ticket of tickets; track ticket.getId){
 
-          <mat-list-item routerLink="/ticket/{{ticket.id}}"><a> {{ticket.title}} </a></mat-list-item>
+          <mat-list-item routerLink="/ticket/{{ticket.getId}}"><a> {{ticket.getTitle}} </a></mat-list-item>
           <mat-divider></mat-divider>
           }
-
         </mat-selection-list>
-
       </mat-tab>
-      <mat-tab label="New"> Content 2 </mat-tab>
+      <mat-tab label="New">
+        <mat-action-list></mat-action-list>
+        <div *ngIf="isLoading; else newContent">
+          <mat-spinner></mat-spinner>
+        </div>
+        <ng-template #newContent>
+          @for (ticket of ticketsNew; track ticket.getId){
+
+          {{ticket.getCreatedBy}}
+          <mat-list-item routerLink="/ticket/{{ticket.getId}}"><a> {{ticket.getTitle}} </a></mat-list-item>
+          <mat-divider></mat-divider>
+          }
+        </ng-template>
+      </mat-tab>
     </mat-tab-group>
 
 

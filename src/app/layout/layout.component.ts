@@ -13,18 +13,18 @@ import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
-import { TicketOverviewComponent } from '../ticket-overview/ticket-overview.component';
 import { RouterModule } from '@angular/router';
 import { Ticket } from '../models/ticket';
+import { TicketService } from '../services/ticket/ticket.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TicketOverviewComponent } from '../pages/ticket-overview/ticket-overview.component';
 
-const config = {
-  disableAnimations: false
-}
+
 @Component({
   selector: 'app-layout',
   standalone: true,
   imports: [TicketOverviewComponent, CommonModule, DashboardComponent, MatTabsModule, RouterModule,
-    MatInputModule,
+    MatInputModule, MatProgressSpinnerModule,
     FormsModule,
     MatFormFieldModule,
     MatMenuModule,
@@ -39,10 +39,36 @@ const config = {
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent{
+export class LayoutComponent implements OnInit {
 
 
   // TODO make api call 
-  tickets: any
+  tickets: Ticket[] = []
+  ticketsNew: Ticket[] = []
+  isLoading: boolean = true
 
+  constructor(
+    private ticketService: TicketService
+  ) {
+
+  }
+
+  ngOnInit(): void {
+
+    this.ticketService.getAllTickets().subscribe({
+      next: (response) => {
+        response.forEach(ticket => {
+          if (ticket.getStatus === 'new open') {
+            this.ticketsNew.push(ticket)
+            console.log(ticket)
+          }
+        });
+        this.isLoading = false
+
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
 }
