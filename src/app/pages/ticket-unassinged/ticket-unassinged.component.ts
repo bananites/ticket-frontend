@@ -49,11 +49,7 @@ export class TicketUnassingedComponent implements OnInit {
 
   }
 
-  reloadComponent(): void {
-    this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
-      this.router.navigate([this.router.url]);
-    })
-  }
+
 
 
 
