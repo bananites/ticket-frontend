@@ -18,13 +18,19 @@ import { Ticket } from '../models/ticket';
 import { TicketService } from '../services/ticket/ticket.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TicketOverviewComponent } from '../pages/ticket-overview/ticket-overview.component';
+import { TicketNewListComponent } from '../components/ticket-new-list/ticket-new-list.component';
 
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [TicketOverviewComponent, CommonModule, DashboardComponent, MatTabsModule, RouterModule,
-    MatInputModule, MatProgressSpinnerModule,
+  imports: [TicketOverviewComponent, 
+    CommonModule, 
+    DashboardComponent, 
+    MatTabsModule, 
+    RouterModule,
+    MatInputModule, 
+    MatProgressSpinnerModule,
     FormsModule,
     MatFormFieldModule,
     MatMenuModule,
@@ -35,6 +41,8 @@ import { TicketOverviewComponent } from '../pages/ticket-overview/ticket-overvie
     MatIconModule,
     MatDividerModule,
     MatSidenavModule,
+    TicketNewListComponent
+
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
@@ -60,7 +68,7 @@ export class LayoutComponent implements OnInit {
         response.forEach(ticket => {
           if (ticket.getStatus === 'new open') {
             this.ticketsNew.push(ticket)
-            console.log(ticket)
+            console.log(ticket.getTitle)
           }
         });
         this.isLoading = false

@@ -1,0 +1,21 @@
+<div *ngIf="isLoading; else listContent">
+    loading
+</div>
+
+
+<ng-template #listContent>
+
+
+
+
+    <mat-selection-list #ticket>
+        <mat-action-list></mat-action-list>
+        @for (ticket of tickets; track ticket){
+
+        <mat-list-item routerLink="/ticket/{{ticket.getId}}"><a> {{ticket.getTitle}} </a></mat-list-item>
+        <mat-divider></mat-divider>
+        }
+
+
+    </mat-selection-list>
+</ng-template>
