@@ -9,8 +9,11 @@ export class Ticket {
     private status?: string
 
 
-  public constructor(
+  constructor(ticket?: Ticket
   ){
+    this.id = ticket?.id || undefined
+    this.title = ticket?.title || ""
+    this.description = ticket?.description || ""
   }  
   
   public get getCreatedBy(): string {
