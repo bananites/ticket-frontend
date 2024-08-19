@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatStepperModule } from "@angular/material/stepper";
@@ -13,6 +13,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AsyncPipe } from '@angular/common';
 import { UserService } from '../../services/user/user.service';
 import { map, Observable, startWith } from 'rxjs';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @Component({
@@ -26,7 +27,8 @@ import { map, Observable, startWith } from 'rxjs';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    AsyncPipe
+    AsyncPipe,
+    MatIconModule
   ],
   templateUrl: './ticket-create.component.html',
   styleUrl: './ticket-create.component.scss'
@@ -34,7 +36,14 @@ import { map, Observable, startWith } from 'rxjs';
 export class TicketCreateComponent implements OnInit {
 
   
-  userCtrl = new FormControl('');
+  // userCtrl = new FormControl('');
+
+  form = this._formBuilder.group({
+    userCtrl: ['', Validators.required],
+    titleCtrl: ['', Validators.required],
+    descriptionCtrl: ['', Validators.required]
+
+  });
 
   constructor(
     private ticketService: TicketService,
@@ -44,7 +53,7 @@ export class TicketCreateComponent implements OnInit {
     private router: Router,
   ) {
 
-    this.filteredUsers = this.userCtrl.valueChanges.pipe(
+    this.filteredUsers = this.form.get('userCtrl')!.valueChanges.pipe(
       startWith(''),
       map(user => (user ? this._filterUser(user): this.users.slice()))
     )
@@ -63,12 +72,7 @@ export class TicketCreateComponent implements OnInit {
   }
 
 
-  form = this._formBuilder.group({
-    userCtrlName: ['', Validators.required],
-    titleCtrl: ['', Validators.required],
-    descriptionCtrl: ['', Validators.required]
 
-  });
 
 
   users: User[] = [];
@@ -95,14 +99,15 @@ export class TicketCreateComponent implements OnInit {
 
     // // TODO add user when login is implemented
 
-    ticket.setCreatedBy = this.form.value.userCtrlName!
+    ticket.setCreatedBy = this.form.value.userCtrl!
     ticket.setTitle = this.form.value.titleCtrl!
     ticket.setDescription = this.form.value.descriptionCtrl!
 
     this.ticketService.postTicket(ticket).subscribe({
-      next: (response) => {
-        this.openSnackBar('Thanks Ticket has been created', 'Ok')
-        this.router.navigate(['ticket/' + response.getId])
+      next: (value) => {
+  
+        this.openSnackBar('Thanks Ticket has been created' + value.ticketId, 'Ok')
+        this.router.navigate(['ticket/' + value.ticketId])
 
       },
       error: (err) => {

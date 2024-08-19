@@ -15,7 +15,7 @@ export class TicketService {
   ) {}
    
 
-  postTicket(ticket: any): Observable<Ticket>{
+  postTicket(ticket: Ticket): Observable<any>{
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -23,11 +23,11 @@ export class TicketService {
         //TODO think about authorization
         // 'Authorization': 'Bearer your-token',
       }),
-      params: new HttpParams().set('ownerId', ticket.createdBy).set('title', ticket.title).set('description', ticket.description),
+      params: new HttpParams().set('ownerId', ticket.getCreatedBy).set('title', ticket.getTitle).set('description', ticket.getDescription),
       responseType: 'json' as const,
     };
 
-    return this.http.post<Ticket>(environment.apiUrl + "/v1/ticket",ticket, httpOptions)
+    return this.http.post<any>(environment.apiUrl + "/v1/ticket",ticket, httpOptions)
 
   }
 

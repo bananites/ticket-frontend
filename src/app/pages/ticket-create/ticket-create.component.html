@@ -5,13 +5,13 @@
       <div>
         <mat-form-field>
           <mat-label>User</mat-label>
-          <input matInput aria-label="User" [matAutocomplete]="auto" [formControl]="userCtrl"
-            formControlName="userCtrlName">
+          <input matInput aria-label="User" [matAutocomplete]="auto" formControlName="userCtrl">
           <mat-autocomplete #auto="matAutocomplete">
 
             @for (user of filteredUsers | async; track user) {
-            <mat-option [value]="user.lastname">
-              <!--  TODO icon for user -->
+            <mat-option [value]="user.firstname +' '+ user.lastname">
+
+                <mat-icon color="accent">portrait</mat-icon>
 
               <span>{{user.firstname}} {{user.lastname}}</span>
 
