@@ -3,7 +3,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatButtonModule } from "@angular/material/button";
-import { FormsModule, ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Ticket } from '../../models/ticket';
 import { TicketService } from '../../services/ticket/ticket.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -36,7 +36,6 @@ import {MatIconModule} from '@angular/material/icon';
 export class TicketCreateComponent implements OnInit {
 
   
-  // userCtrl = new FormControl('');
 
   form = this._formBuilder.group({
     userCtrl: ['', Validators.required],
