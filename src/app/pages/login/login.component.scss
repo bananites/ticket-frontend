@@ -1,3 +1,10 @@
+.container-login {
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%
+}
 .example-form {
   min-width: 150px;
   max-width: 500px;
@@ -6,4 +13,9 @@
 
 .example-full-width {
   width: 100%;
+}
+button {
+  margin-right: 10px;
+
+
 }
