@@ -27,7 +27,7 @@ export class LoginComponent {
   constructor(
     private _formBuilder: FormBuilder,
     private _authService: AuthUserService,
-    private _router: Router
+    private _router: Router,
   ) { }
 
   form = this._formBuilder.group({
@@ -41,24 +41,20 @@ export class LoginComponent {
       return;
     }
 
-    const email = this.form.value.emailCtrl!
-    const pass = this.form.value.passwordCtrl!
+    const email = this.form.value.emailCtrl!;
+    const pass = this.form.value.passwordCtrl!;
     // build auth login auth service
     this._authService.authUser(email, pass).subscribe({
       next: (value) => {
-        console.log("kjwe")
         if (value) {
-         console.log(value)
-          this._router.navigate([''])
+          console.log(value);
+          this._router.navigate(['']);
         }
       },
 
       error: (err) => {
-        console.warn("Login not correct!" + err)
-      }
-
-    })
-
-
+        console.warn('Login not correct!' + err);
+      },
+    });
   }
 }
