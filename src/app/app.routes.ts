@@ -6,6 +6,7 @@ import { TicketCreateComponent } from './pages/ticket-create/ticket-create.compo
 import { TicketOverviewComponent } from './pages/ticket-overview/ticket-overview.component';
 import { TicketViewComponent } from './pages/ticket-view/ticket-view.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
 
@@ -19,6 +20,7 @@ export const routes: Routes = [
       { path: 'ticket-unassigned', component: TicketUnassingedComponent },
       { path: 'ticket/:id', component: TicketViewComponent },
       { path: 'ticket-create', component: TicketCreateComponent },
+      { path: 'profile', component: ProfileComponent},
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ],
   },
