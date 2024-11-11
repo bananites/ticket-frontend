@@ -7,20 +7,22 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthUserService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   authUser(email: string, password: string): Observable<String> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
-      params: new HttpParams().set('email', email).set('password', password),
+      email: email,
+      password: password,
       responseType: 'json' as const,
     };
 
-      return this.http.post<String>(
-       environment.apiUrl + '/v1/auth/signin',
-      httpOptions,
-     );
+
+    return this.http.post<String>(
+      environment.apiUrl + '/v1/auth/signin',
+      httpOptions
+    );
   }
 }
