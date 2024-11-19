@@ -25,7 +25,6 @@ import { StorageService } from '../../services/storage/storage.service';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
-
   isLoggedIn = false;
 
   constructor(
@@ -41,10 +40,9 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    // TODO Roles 
+    // TODO Roles
     if (this._storageService.isLoggedOn()) {
       this.isLoggedIn = true;
-
     }
   }
   onSubmit(): void {
@@ -66,6 +64,7 @@ export class LoginComponent implements OnInit {
 
       error: (err) => {
         console.warn('Login not correct!' + err);
+        console.log(err);
       },
     });
   }
