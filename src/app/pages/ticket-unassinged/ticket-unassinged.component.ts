@@ -26,7 +26,6 @@ export class TicketUnassingedComponent implements OnInit {
 
   constructor(
     private ticketService: TicketService,
-    private router: Router
 
   ) { }
 
@@ -43,6 +42,7 @@ export class TicketUnassingedComponent implements OnInit {
         this.isLoading = false
       },
       error: (err) => {
+        console.log("ticket-unassigned")
         console.log(err)
       }
     })
