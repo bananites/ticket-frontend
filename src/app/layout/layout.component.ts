@@ -18,7 +18,7 @@ import { Ticket } from '../models/ticket';
 import { TicketService } from '../services/ticket/ticket.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TicketOverviewComponent } from '../pages/ticket-overview/ticket-overview.component';
-import { TicketNewListComponent } from '../components/ticket-new-list/ticket-new-list.component';
+import { TicketNewListComponent } from '../pages/components/ticket-new-list/ticket-new-list.component';
 import { StorageService } from '../services/storage/storage.service';
 import { AuthUserService } from '../services/auth/auth-user.service';
 import { coerceStringArray } from '@angular/cdk/coercion';

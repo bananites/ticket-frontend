@@ -8,10 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
 
-const config ={
+const config = {
   disableAnimations: false,
 }
 
 export const appConfig: ApplicationConfig = {
-  providers: [{provide: BrowserAnimationsModule, useValue: BrowserAnimationsModule.withConfig(config)}, provideRouter(routes), provideClientHydration(), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync(), provideHttpClient(withFetch()) ]
+  providers: [{ provide: BrowserAnimationsModule, useValue: BrowserAnimationsModule.withConfig(config) }, provideRouter(routes), provideClientHydration(), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync(), provideHttpClient(withFetch())]
 };

@@ -53,6 +53,8 @@ export class LoginComponent implements OnInit {
 
     const email = this.form.value.emailCtrl!;
     const pass = this.form.value.passwordCtrl!;
+
+    
     // build auth login auth service
     this._authService.authUser(email, pass).subscribe({
       next: (value) => {
@@ -65,6 +67,7 @@ export class LoginComponent implements OnInit {
       },
 
       error: (err) => {
+        // TODO add snackbar
         console.warn('Login not correct!' + err);
         console.log(err);
       },
