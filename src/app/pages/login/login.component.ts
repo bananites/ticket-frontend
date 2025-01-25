@@ -56,6 +56,8 @@ export class LoginComponent implements OnInit {
     // build auth login auth service
     this._authService.authUser(email, pass).subscribe({
       next: (value) => {
+        //TODO debug log
+        console.log(value);
         this._storageService.saveSession(value);
         this._router.navigate(['']);
         this.isLoggedIn = true;
