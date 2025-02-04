@@ -26,6 +26,8 @@ export class HttpReqeustInterceptor implements HttpInterceptor {
           !req.url.includes('auth/signin') &&
           error.status === 401
         ) {
+
+          console.log("401 STATUS")
           return this.handle401Error(req, next);
         }
 
@@ -42,7 +44,7 @@ export class HttpReqeustInterceptor implements HttpInterceptor {
         return this.authService.refreshToken().pipe(
           switchMap(() => {
             this.isRefreshing = false;
-
+            console.log("handle 401");
             return next.handle(request);
 
           }),
