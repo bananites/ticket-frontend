@@ -2,13 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { env } from 'process';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthUserService {
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private storageService: StorageService
+
+  ) { }
+
+
 
   authUser(email: string, password: string): Observable<String> {
     const httpOptions = {
@@ -20,23 +26,41 @@ export class AuthUserService {
       responseType: 'json' as const,
     };
 
-
     return this.http.post<String>(
       environment.apiUrl + '/v1/auth/signin',
       httpOptions
     );
   }
 
-  // TODO add logout
+  // TODO Return type
 
-
-  refreshToken() {
-
+  logout(): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
-      })
+      }),
     }
-    return this.http.post(environment.apiUrl + '/v1/auth/refresh', {}, httpOptions);
+
+    return this.http.post(environment.apiUrl + '/v1/auth/logout', httpOptions);
+
   }
+
+
+
+   refreshToken(): Observable<String> {
+    const sessionStorage = this.storageService.getSession()
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + sessionStorage?.refreshToken,
+      }),
+      responseType: 'json' as const,
+
+
+    }
+    return this.http.get<String>(environment.apiUrl + '/v1/auth/refresh', httpOptions);
+
+  }
+
 }

@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS, HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, switchMap, throwError } from "rxjs";
 import { StorageService } from "../services/storage/storage.service";
@@ -22,18 +22,15 @@ export class HttpReqeustInterceptor implements HttpInterceptor {
       withCredentials: true,
     });
 
-    console.log("INTERCEPT")
 
     return next.handle(req).pipe(
       catchError((error) => {
-        console.log(error);
         if (
           error instanceof HttpErrorResponse &&
           !req.url.includes('auth/signin') &&
           error.status === 401
         ) {
 
-          console.log("401 STATUS")
           return this.handle401Error(req, next);
         }
 
@@ -50,17 +47,32 @@ export class HttpReqeustInterceptor implements HttpInterceptor {
 
       if (this.storageService.isLoggedOn()) {
         return this.authService.refreshToken().pipe(
-          switchMap(() => {
-            this.isRefreshing = false;
-            console.log("handle 401");
-            return next.handle(request);
+          switchMap((value) => {
 
+            this.isRefreshing = false;
+
+            this.storageService.saveSession(value);
+            const newToken = this.storageService.getSession()?.accessToken
+
+
+            // Update Reqeust and use new Token 
+            const updatedRequest = request.clone({
+              setHeaders: {
+                Authorization: `Bearer ${newToken}`
+              }
+            })
+
+            return next.handle(updatedRequest);
           }),
           catchError((error) => {
+
+
             this.isRefreshing = false;
             if (error.status == '403') {
               // TODO implement logout!
               // Think about eventbusService
+
+              console.log("event bus called")
               this.eventBusService.emit(new EventData('logout', null))
             }
 
