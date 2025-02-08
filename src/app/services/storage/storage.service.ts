@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 
 const USER_KEY = 'auth-user';
 
-export interface SessionStorage{
- accessToken: string
+export interface SessionStorage {
+  email: string,
+  accessToken: string,
+  refreshToken: string,
 
 }
 
@@ -24,7 +26,7 @@ export class StorageService {
 
   }
 
-  public getSession(): SessionStorage | undefined{
+  public getSession(): SessionStorage | undefined {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {
       return JSON.parse(user);
@@ -35,7 +37,7 @@ export class StorageService {
 
   public isLoggedOn(): boolean {
     const user = window.sessionStorage.getItem(USER_KEY);
-    
+
     if (user) {
       return true;
     }
