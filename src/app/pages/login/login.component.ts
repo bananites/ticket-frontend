@@ -24,8 +24,7 @@ import { StorageService } from '../../services/storage/storage.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit {
-  isLoggedIn = false;
+export class LoginComponent {
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -39,12 +38,6 @@ export class LoginComponent implements OnInit {
     passwordCtrl: ['', Validators.required],
   });
 
-  ngOnInit(): void {
-    // TODO Roles
-    if (this._storageService.isLoggedOn()) {
-      this.isLoggedIn = true;
-    }
-  }
   onSubmit(): void {
     if (this.form.invalid) {
       console.warn('INVALID');
@@ -62,7 +55,6 @@ export class LoginComponent implements OnInit {
         console.log(value);
         this._storageService.saveSession(value);
         this._router.navigate(['']);
-        this.isLoggedIn = true;
         // TODO add roles
       },
 
