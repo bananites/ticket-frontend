@@ -8,8 +8,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { RouterModule } from '@angular/router';
 import {  HttpClientModule } from '@angular/common/http';
-import { TicketService } from '../../services/ticket/ticket.service';
-import { Ticket } from '../../models/ticket';
+import { TicketService } from '../../../services/ticket/ticket.service';
+import { Ticket } from '../../../models/ticket';
 
 
 @Component({

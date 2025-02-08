@@ -36,11 +36,15 @@ export class StorageService {
   }
 
   public isLoggedOn(): boolean {
+
+    // TODO need to be verfied not just check if is there
     const user = window.sessionStorage.getItem(USER_KEY);
 
     if (user) {
+      console.log("IS LOGGED IN")
       return true;
     }
+    console.log("IS NOT LOGGED ON")
     return false;
   }
 }

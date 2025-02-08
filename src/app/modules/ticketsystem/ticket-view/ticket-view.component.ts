@@ -5,7 +5,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatIconModule } from "@angular/material/icon";
-import { TicketService } from '../../services/ticket/ticket.service';
+import { TicketService } from '../../../services/ticket/ticket.service';
 
 @Component({
   selector: 'app-ticket-view',
