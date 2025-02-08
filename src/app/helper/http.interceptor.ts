@@ -18,12 +18,17 @@ export class HttpReqeustInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    req.clone({
+    const token = this.storageService.getSession()?.accessToken;
+
+    const updatedRequest = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      },
+
       withCredentials: true,
-    });
+    })
 
-
-    return next.handle(req).pipe(
+    return next.handle(updatedRequest).pipe(
       catchError((error) => {
         if (
           error instanceof HttpErrorResponse &&
@@ -31,7 +36,7 @@ export class HttpReqeustInterceptor implements HttpInterceptor {
           error.status === 401
         ) {
 
-          return this.handle401Error(req, next);
+          return this.handle401Error(updatedRequest, next);
         }
 
         return throwError(() => error);
