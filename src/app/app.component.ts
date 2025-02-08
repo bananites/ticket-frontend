@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+import { StorageService } from './services/storage/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,24 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent  implements OnInit{
+
+  isLoggedIn = false;
+
+  constructor(
+    private storageService: StorageService,
+    private _router: Router,
+  ){}
+
+  ngOnInit(): void {
+    this.isLoggedIn = this.storageService.isLoggedOn();
+
+    if(this.isLoggedIn){
+      this._router.navigate(['']);
+    }
+
+    this._router.navigate(["login"]);
+    
+  }
   title = 'ticket-frontend';
 }
