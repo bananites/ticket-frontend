@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { catchError, Observable, switchMap, throwError } from "rxjs";
 import { StorageService } from "../services/storage/storage.service";
 import { AuthUserService } from "../services/auth/auth-user.service";
+import { EventBusService } from "../shared/event-bus/event-bus.service";
+import { EventData } from "../shared/event-bus/event.class";
 
 @Injectable()
 export class HttpReqeustInterceptor implements HttpInterceptor {
@@ -12,6 +14,7 @@ export class HttpReqeustInterceptor implements HttpInterceptor {
   constructor(
     private storageService: StorageService,
     private authService: AuthUserService,
+    private eventBusService: EventBusService,
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -19,8 +22,11 @@ export class HttpReqeustInterceptor implements HttpInterceptor {
       withCredentials: true,
     });
 
+    console.log("INTERCEPT")
+
     return next.handle(req).pipe(
       catchError((error) => {
+        console.log(error);
         if (
           error instanceof HttpErrorResponse &&
           !req.url.includes('auth/signin') &&
@@ -35,6 +41,8 @@ export class HttpReqeustInterceptor implements HttpInterceptor {
       })
     )
   }
+
+
   private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
 
     if (!this.isRefreshing) {
@@ -53,7 +61,7 @@ export class HttpReqeustInterceptor implements HttpInterceptor {
             if (error.status == '403') {
               // TODO implement logout!
               // Think about eventbusService
-              // this.eventBusService.emit(new EventData('logout', null))
+              this.eventBusService.emit(new EventData('logout', null))
             }
 
             return throwError(() => error);
