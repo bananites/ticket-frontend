@@ -5,8 +5,8 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
-import { httpInterceptorProviders } from './helper/http.interceptor';
+import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
+import { httpInterceptorProviders } from './_helper/http.interceptor';
 
 
 const config = {

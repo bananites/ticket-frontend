@@ -1,5 +1,3 @@
-//Dev Environment
-
 export const environment = {
 
     production: false,

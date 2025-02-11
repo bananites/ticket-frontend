@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { StorageService } from './services/storage/storage.service';
-import { EventBusService } from './shared/event-bus/event-bus.service';
-import { AuthUserService } from './services/auth/auth-user.service';
 import { Subscription } from 'rxjs';
+import { StorageService } from './_services/storage/storage.service';
+import { EventBusService } from './_shared/event-bus/event-bus.service';
+import { AuthUserService } from './_services/auth/auth-user.service';
 
 @Component({
   selector: 'app-root',

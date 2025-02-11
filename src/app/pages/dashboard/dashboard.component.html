@@ -1,14 +1,19 @@
-<mat-grid-list cols="1" rowHeight="7:1">
+<mat-grid-list cols="2" rowHeight="3:1">
     <mat-grid-tile>
-        <button mat-fab routerLink="/ticket-overview" extended color="basic">
-            <p>All Tickets</p>
-        </button>
+        <mat-card>
+            <mat-card-content>
+                <p>Verwalten sie ihrer Tickets</p>
+                <a routerLink="/ticket-overview">Ticket App</a>
+            </mat-card-content>
+        </mat-card>
     </mat-grid-tile>
     <mat-grid-tile>
-        <button mat-fab routerLink="/ticket-unassigned" extended color="basic">
-            <p>Unassinged Tickets</p>
-
-        </button>
+        <mat-card>
+            <mat-card-content>
+                <p>Verwalten sie ihre Projekte</p>
+                <a routerLink="/project-dashboard">Projekt App</a>
+            </mat-card-content>
+        </mat-card>
     </mat-grid-tile>
     <mat-grid-tile>
         <button mat-fab routerLink="/ticket-create" extended color="basic">

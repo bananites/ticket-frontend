@@ -4,16 +4,16 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatButtonModule } from "@angular/material/button";
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { Ticket } from '../../../models/ticket';
-import { TicketService } from '../../../services/ticket/ticket.service';
+import { Ticket } from '../models/ticket';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { User } from '../../../models/user';
+import { User } from '../models/user';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AsyncPipe } from '@angular/common';
-import { UserService } from '../../../services/user/user.service';
 import { map, Observable, startWith } from 'rxjs';
 import {MatIconModule} from '@angular/material/icon';
+import { UserService } from '../services/user/user.service';
+import { TicketService } from '../services/ticket/ticket.service';
 
 
 @Component({

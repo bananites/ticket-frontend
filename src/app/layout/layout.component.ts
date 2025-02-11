@@ -11,25 +11,21 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
-import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Ticket } from '../models/ticket';
-import { TicketService } from '../services/ticket/ticket.service';
+import { Ticket } from '../modules/ticketsystem/models/ticket';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { TicketOverviewComponent } from '../modules/ticketsystem/ticket-overview/ticket-overview.component';
-import { TicketNewListComponent } from '../pages/components/ticket-new-list/ticket-new-list.component';
-import { StorageService } from '../services/storage/storage.service';
-import { AuthUserService } from '../services/auth/auth-user.service';
-import { coerceStringArray } from '@angular/cdk/coercion';
+import { TicketNewListComponent } from '../modules/ticketsystem/components/ticket-new-list/ticket-new-list.component';
+import { TicketService } from '../modules/ticketsystem/services/ticket/ticket.service';
+import { StorageService } from '../_services/storage/storage.service';
+import { AuthUserService } from '../_services/auth/auth-user.service';
 
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [TicketOverviewComponent,
+  imports: [
     CommonModule,
-    DashboardComponent,
     MatTabsModule,
     RouterModule,
     MatInputModule,

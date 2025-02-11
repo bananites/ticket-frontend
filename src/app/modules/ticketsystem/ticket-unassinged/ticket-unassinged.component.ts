@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatTableModule } from "@angular/material/table";
 import { MatButtonModule } from "@angular/material/button";
-import { Router, RouterModule } from '@angular/router';
-import { TicketService } from '../../services/ticket/ticket.service';
-import { Ticket } from '../../models/ticket';
+import {  RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
+import { Ticket } from '../models/ticket';
+import { TicketService } from '../services/ticket/ticket.service';
 
 @Component({
   selector: 'app-ticket-unassinged',

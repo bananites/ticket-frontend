@@ -8,9 +8,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthUserService } from '../../services/auth/auth-user.service';
 import { Router } from '@angular/router';
-import { StorageService } from '../../services/storage/storage.service';
+import { AuthUserService } from '../../_services/auth/auth-user.service';
+import { StorageService } from '../../_services/storage/storage.service';
 @Component({
   selector: 'app-login',
   standalone: true,

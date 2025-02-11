@@ -8,14 +8,14 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { RouterModule } from '@angular/router';
 import {  HttpClientModule } from '@angular/common/http';
-import { TicketService } from '../../../services/ticket/ticket.service';
-import { Ticket } from '../../../models/ticket';
+import { Ticket } from '../models/ticket';
+import { TicketService } from '../services/ticket/ticket.service';
 
 
 @Component({
   selector: 'app-ticket-overview',
   standalone: true,
-  imports: [JsonPipe, RouterModule, MatCheckboxModule, MatButtonModule, MatListModule, MatTableModule, MatIconModule, MatDividerModule, DatePipe, HttpClientModule],
+  imports: [RouterModule, MatCheckboxModule, MatButtonModule, MatListModule, MatTableModule, MatIconModule, MatDividerModule, DatePipe, HttpClientModule],
   templateUrl: './ticket-overview.component.html',
   styleUrl: './ticket-overview.component.scss'
 })

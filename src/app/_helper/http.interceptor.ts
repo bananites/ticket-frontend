@@ -1,10 +1,10 @@
 import { HTTP_INTERCEPTORS, HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, switchMap, throwError } from "rxjs";
-import { StorageService } from "../services/storage/storage.service";
-import { AuthUserService } from "../services/auth/auth-user.service";
-import { EventBusService } from "../shared/event-bus/event-bus.service";
-import { EventData } from "../shared/event-bus/event.class";
+import { StorageService } from "../_services/storage/storage.service";
+import { AuthUserService } from "../_services/auth/auth-user.service";
+import { EventBusService } from "../_shared/event-bus/event-bus.service";
+import { EventData } from "../_shared/event-bus/event.class";
 
 @Injectable()
 export class HttpReqeustInterceptor implements HttpInterceptor {

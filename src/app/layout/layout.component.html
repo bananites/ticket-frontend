@@ -3,12 +3,6 @@
     <span>Ticket Tacos App </span>
     <span class="spacer"></span>
 
-    @if (isLoggedIn){
-    <button mat-icon-button aria-label="user icon button">
-      <mat-icon>user</mat-icon> {{ username }}
-    </button>
-    }
-
     <button mat-icon-button aria-label="news icon button">
       <mat-icon>notifications</mat-icon>
     </button>
@@ -55,7 +49,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-sidenav-container class="example-container">
+<!-- <mat-sidenav-container class="example-container">
   <mat-sidenav opened mode="side">
     <mat-form-field appearance="outline" class="searchbar">
       <mat-label class="label-search"> Search </mat-label>
@@ -91,7 +85,7 @@
         <app-ticket-new-list></app-ticket-new-list>
       </mat-tab>
     </mat-tab-group>
-  </mat-sidenav>
+  </mat-sidenav> -->
 
   <router-outlet></router-outlet>
-</mat-sidenav-container>
+<!-- </mat-sidenav-container> -->
